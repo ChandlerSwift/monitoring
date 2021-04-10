@@ -38,3 +38,12 @@ def test_files():
     assert r.elapsed.total_seconds() < 2
     if r.elapsed.total_seconds() > 0.5:
         warnings.warn(f"Response slow, took {r.elapsed.total_seconds()} seconds")
+
+# TODO: we could check to make sure the builds are there and syncing, or something
+def test_asteroid_builds_load():
+    r = requests.get("https://home.chandlerswift.com/asteroid/")
+    assert r.status_code == 200
+    assert "Index of /asteroid/" in r.text
+    assert r.elapsed.total_seconds() < 2
+    if r.elapsed.total_seconds() > 0.5:
+        warnings.warn(f"Response slow, took {r.elapsed.total_seconds()} seconds")
